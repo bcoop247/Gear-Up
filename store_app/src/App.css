@@ -1,4 +1,37 @@
-.App {
-  text-align: center;
+*{
+  background-color: #0b0C10;
+
 }
+
+.storeH1{
+  color: #66FCF1;
+}
+#welcomeH1{
+  font-size: 100px;
+  color: #66FCF1;
+}
+ #customH5{
+  color: #C5C6C7;
+ }
+ .customH2{
+  color: #C5C6C7;
+ }
+ .form-label{
+color: #C5C6C7;
+ }
+
+ .custom-cart-icon{
+  color: #66FCF1;
+  
+  font-size: 25px;
+ }
+ .customImage{
+  width: 120px;
+ }
+ p {
+  color: #66FCF1;
+ }
+ #test{
+  color: white;
+ }
 
