@@ -1,11 +1,17 @@
 import Header from "./Header";
+import { Link } from "react-router-dom";
 import { useState, useEffect } from "react";
 import CartIcon from "./CartIcon";
-import AddToCartButton from "./AddToCartButton";
+import { useShoppingCart } from "./ShoppingCartContext";
 
 const Electronics = () => {
   const [electronicProducts, setElectronicProducts] = useState([]);
   const baseURL = "http://localhost:3500";
+  const { addToCart } = useShoppingCart();
+
+  const handleSearch = (searchInput) => {
+    console.log('User searched for:', searchInput);
+  };
   
     useEffect(() => {
       fetch(`${baseURL}/electronicproducts`)
@@ -16,15 +22,20 @@ const Electronics = () => {
       })
     }, []);
 
+    const handleAddtoCart = (product) => {
+      addToCart(product);
+      console.log();
+    };
+
   return (
     <div>
-      <Header />
+      <Header onSearch={handleSearch}/>
 
 
 <div className="container d-flex justify-content-center">
   <h2 className="customH2">Electronics</h2>
 </div>
-<CartIcon />
+<Link to="/cart"> <CartIcon /> </Link>
 
 <div className="container">
 
@@ -36,12 +47,11 @@ const Electronics = () => {
             <p>{product.product_name}</p>
             <p>Category: {product.category}</p>
             <p>Price: {product.price}</p>
-            <AddToCartButton />
+            <button className="btn btn-primary" onClick={() => handleAddtoCart(product)}>Add to Cart</button>
             <br />
             <br />
             <br />
             <br />
-            {/* Render other product details */}
           </li>
         ))}
       </ul>

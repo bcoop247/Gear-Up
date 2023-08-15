@@ -9,7 +9,6 @@ const HomePage = () => {
     // Perform any search-related logic here
     // For example, you can filter a list of items based on the search input
 
-
   };
  
   return(

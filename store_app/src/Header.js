@@ -1,17 +1,17 @@
 import { Link, useNavigate } from "react-router-dom";
 import { useState } from "react";
 
+// onSearch 
 const Header = ({onSearch}) => {
+  
   const [searchValue, setSearchValue] = useState("");
   const navigate = useNavigate();
   
-  // const [query, setQuery] = useState('');
-
   const handleInputChange = (event) => {
    const inputValue = event.target.value;
    setSearchValue(inputValue);
    onSearch(inputValue); // CALL THE CALLBACK FUNCTION WITH THE USERS INPUT
-  // setQuery(event.target.value);
+  
   };
 
   const handleSubmit = (event) => {
@@ -22,7 +22,7 @@ const Header = ({onSearch}) => {
 
   return (
     <div>
-      <h1>{searchValue}</h1>
+      {/* <h1>{searchValue}</h1> */}
       <div className="d-grid justify-content-center align-items-center">
       <Link to="/homepage"> <button type="button" className="btn"> <h1 className="storeH1">GEARup.com</h1></button></Link>
       </div>
