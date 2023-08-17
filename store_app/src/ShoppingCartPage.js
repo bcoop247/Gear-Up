@@ -12,10 +12,13 @@ function CartPage() {
   };
 
   return (
-    <div className='container'>
+    <div className='container justify-content-center'>
       <Header />
-      <div className='container'>
-      <h2>Your Cart</h2>
+      
+      <div className="container d-flex justify-content-center">
+          <h2 className="customH2">Shopping Cart</h2>
+      </div>
+      
       {cart.length > 0 ? (
         <ul>
           {cart.map((product) => (
@@ -28,14 +31,15 @@ function CartPage() {
             <br />
             <br />
             <br />
+            <br />
             </li>
            
           ))}
         </ul>
       ) : (
-        <p>Your cart is empty.</p>
+        <p className="container d-flex justify-content-center" style={{ color: '#8B0000' }}>Your cart is empty.</p>
       )}
-      </div>
+      
     </div>
   );
 }

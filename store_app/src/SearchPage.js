@@ -2,6 +2,9 @@ import React, {useState, useEffect} from "react";
 import { useLocation } from "react-router-dom";
 import AddToCartButton from "./AddToCartButton";
 import Header from "./Header";
+import { useShoppingCart } from "./ShoppingCartContext";
+import { Link } from "react-router-dom";
+import CartIcon from "./CartIcon";
 const baseURL = "http://localhost:3500";
 
 const SearchPage = () => {
@@ -10,6 +13,7 @@ const SearchPage = () => {
   const query = searchParams.get('query');
   const [products, setProducts] = useState([]);
   // const [filteredResults, setFilteredResults] = useState([]);
+  const { addToCart } = useShoppingCart();
 
   const handleSearch = (searchInput) => {
     console.log('User searched for:', searchInput);
@@ -28,6 +32,7 @@ const SearchPage = () => {
     });
     
   }, []);
+
   console.log(products);
   const lowerCaseSearchTerm = query.toLowerCase();
   const filteredProducts = products.filter(product => {
@@ -37,10 +42,22 @@ const SearchPage = () => {
       return ["The Search Did not Yield any Results"];
     }
   });
+
+  const handleAddtoCart = (product) => {
+    addToCart(product);
+    console.log();
+  };
   
   return (
-    <>
+    <div className='container justify-content-center'>
     <Header onSearch={handleSearch}/>
+
+    <div className="container d-flex justify-content-center">
+          <h2 className="customH2">Search Results</h2>
+        </div>
+        
+      <Link to="/cart"> <CartIcon /> </Link>
+
      {filteredProducts.length > 0 ? (
         <ul>
           {filteredProducts.map((product) => (
@@ -49,7 +66,7 @@ const SearchPage = () => {
               <p>{product.product_name}</p> 
               <p>Category: {product.category}</p>
               <p>Price: {product.price}</p>
-              <AddToCartButton />
+              <button className="btn btn-primary" onClick={() => handleAddtoCart(product)}>Add to Cart</button>
             <br />
             <br />
             <br />
@@ -61,29 +78,8 @@ const SearchPage = () => {
       ) : (
         <p className="errorMessage">No matching products found.</p>
       )}
-    
-  
-
-    {/* <ul>
-      
-        {filteredProducts.map((product) => (
-          <li key={product.id}>
-            <img src={product.image} alt={product.product_name} className="rounded float-start customImage" />
-            <p>{product.product_name}</p>
-            <p>Category: {product.category}</p>
-            <p>Price: {product.price}</p>
         
-            <AddToCartButton />
-            <br />
-            <br />
-            <br />
-          </li>
-        ))}
-    </ul> */}
-   
-   
-    
-    </>
+    </div>
   )
 }
 

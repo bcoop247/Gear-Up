@@ -28,14 +28,14 @@ const Jewelry = () => {
     };
 
   return (
-  <div>
+  <div className='container justify-content-center'>
     <Header onSearch={handleSearch}/>
     <div className="container d-flex justify-content-center">
       <h2 className="customH2">Jewelry</h2>
     </div>
     <Link to="/cart"> <CartIcon /> </Link>
 
-    <div className="container">
+    
 
 <ul>
         {jewelryProducts.map((product) => (
@@ -54,7 +54,7 @@ const Jewelry = () => {
         ))}
       </ul>
 
-</div>
+
 
   </div>
   )

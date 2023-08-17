@@ -1,28 +1,36 @@
 import { useState } from "react";
-import { Link } from 'react-router-dom'; // POPULAR LIBRARY FOR HANDLING ROUTING/NAVIGATION IN REACT
+import { Link, useNavigate } from 'react-router-dom'; // POPULAR LIBRARY FOR HANDLING ROUTING/NAVIGATION IN REACT
+// import jwt_decode from 'jsonwebtoken';
 
 const UserLoginForm = () => {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
+  const [errorMessage, setErrorMessage] = useState(null);
+  const navigate = useNavigate();
   const apiBaseURL = "http://localhost:3500";
 
   const handleEmailChange = (event) => { setEmail(event.target.value) };
   const handlePasswordChange = (event) => { setPassword(event.target.value) };
   
-  const handleSubmit = async (event) => { event.preventDefault();
+  const handleSubmit = async (event) => { 
+    event.preventDefault();
   try{
     // SEND THE USRS LOGIN CREDENTIALS THROUGH THE SERVER TO THE DB AS JSON
-    const response = await fetch(`${apiBaseURL}/retail_store/login`, { 
+    const response = await fetch(`${apiBaseURL}/login`, { 
     method: 'POST',
     headers: {'Content-Type': 'application/json' },
     body: JSON.stringify({ email, password }), 
   });
 
-    console.log('Login Form Submitted');
-  
-    // ONCE THE PROMISE HAS RESOLVED, ASSIGN THE RESPONSE TO A VARIABLE
-    const data = await response.json();
-    console.log(data);
+    if(response.ok){
+      const data = await response.json();
+      localStorage.setItem('userData', JSON.stringify(data));
+      console.log(data);
+      navigate('/homepage');
+    } else{
+      setErrorMessage('Invalid username or password');
+      console.log('ERROR');
+    }
     
   }
   catch (error){
@@ -37,7 +45,7 @@ const UserLoginForm = () => {
         <Link to="/homepage"> <button type="button" className="btn"> <h1 className="storeH1">GEARup.com</h1></button></Link>
       
         <Link to="/homepage">
-          <button type="button"className="btn btn-primary position-absolute top-0 start-0 mt-3 ms-3"> Back </button>
+          <button type="button"className="btn btn-primary position-absolute top-0 start-0 mt-3 ms-3"> Home </button>
         </Link>
 
         <Link to="/newuser">
@@ -77,10 +85,12 @@ const UserLoginForm = () => {
     <br /><br />
 
     <div className="mb-3">
-      <Link to="/homepage"> 
-        <button type="submit" className="btn btn-primary">Create User</button> 
-      </Link>
+       
+        <button type="submit" className="btn btn-primary">Login</button> 
+      
     </div>
+    {/* CONDITIONALLY RENDER THE ERROR MESSAGE IF NOT NULL */}
+    {errorMessage && <p className="error-message" id="errorMessage"> {errorMessage} </p>}
 
   </form>
 

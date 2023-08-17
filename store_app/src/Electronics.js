@@ -28,7 +28,7 @@ const Electronics = () => {
     };
 
   return (
-    <div>
+    <div className='container justify-content-center'>
       <Header onSearch={handleSearch}/>
 
 
@@ -37,7 +37,7 @@ const Electronics = () => {
 </div>
 <Link to="/cart"> <CartIcon /> </Link>
 
-<div className="container">
+
 
 <ul>
         {electronicProducts.map((product) => (
@@ -56,7 +56,7 @@ const Electronics = () => {
         ))}
       </ul>
 
-</div>
+
 
 </div>
   )

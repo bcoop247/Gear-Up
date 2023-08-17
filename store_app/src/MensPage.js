@@ -30,14 +30,13 @@ const handleSearch = (searchInput) => {
   };
 
   return(
-    <div>
- <Header onSearch={handleSearch}/>
-  <div className="container d-flex justify-content-center">
-  <h2 className="customH2">Mens Apparel</h2>
-  </div>
- <Link to="/cart"> <CartIcon /> </Link>
-
-<div className="container">
+    <div className='container justify-content-center'>
+      <Header onSearch={handleSearch}/>
+        <div className="container d-flex justify-content-center">
+          <h2 className="customH2">Mens Apparel</h2>
+        </div>
+        
+      <Link to="/cart"> <CartIcon /> </Link>
 
 <ul>
         {mensProducts.map((product) => (
@@ -54,9 +53,6 @@ const handleSearch = (searchInput) => {
         ))}
       </ul>
 
-</div>
-
-  
 </div>
   )
 };

@@ -21,6 +21,7 @@ const womensProductsRoute = require('./routes/womensProducts')
 const electronicsProductsRoute = require('./routes/electronicProducts');
 const jewelryProductsRoute = require('./routes/jewelryProducts');
 const searchRoute = require('./routes/search');
+const quotesRoute = require('./routes/quotes')
 
 //SETUP ROUTE MIDDLEWARE
 app.use('/mensproducts', mensProductsRoute);
@@ -28,30 +29,36 @@ app.use('/womensproducts', womensProductsRoute);
 app.use('/electronicproducts', electronicsProductsRoute);
 app.use('/jewelryproducts', jewelryProductsRoute);
 app.use('/search', searchRoute);
+app.use('/quotes', quotesRoute);
 
-
-//BASIC ROUTE FOR THE HOMEPAGE
 app.get('/', (req, res) => {
   res.send('Hello, expressss!');
 });
 
 //LOGIN ROUTE TO AUTHENTICATE USER CREDENTIALS
-app.post('/retail_store/login', async (req, res,) => {
+app.post('/login', async (req, res,) => {
   const { email, password } = req.body;
+  
+  const user = await db.oneOrNone(
+    `SELECT email, first_name, last_name, username, password 
+     FROM users 
+     WHERE email = $1 `, 
+    [email]);
 
-  try{
-    const user = await db.query(`SELECT * FROM users WHERE email = $1 AND password = $2`, [email, password]);
+    if(!user){
+      return res.status(401).json({ error: 'Invalid Credentials' });
+    }
+    const passwordMatch = await bcrypt.compare(password, user.password);
 
-    if(!user) { res.status(404).json({ message: "Invalid Email or Password" }) }
-    
-    //TO DO: VALIDATE THE USERS PASSWORD
-    else if (user) { res.json(user) };
-    
-  }
-  catch(error){
-    console.log('Error Connecting to DB');
-  }
-});
+    if(!passwordMatch){
+      return res.status(401).json({ erro: 'Invalid Credentials'});
+    }
+    else if(user && passwordMatch){
+      return res.json(user);
+    }
+
+  });
+
 
 app.post('/retail_store/new_user', async (req, res) => {
   const {firstName, lastName, username, email, password } = req.body;

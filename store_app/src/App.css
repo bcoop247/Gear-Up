@@ -1,27 +1,94 @@
-*{
-  background-color: #0b0C10;
+/* FONTS */
+@import url('https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Cedarville+Cursive&family=Cormorant+Garamond:wght@600&family=Dancing+Script:wght@700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Cedarville+Cursive&family=Cormorant+Garamond:wght@600&family=Dancing+Script:wght@700&family=Roboto:ital,wght@1,700&display=swap');
+/* Bootstrap Icons */
+@import "~bootstrap/dist/css/bootstrap.css";
 
+body {
+  background-image: url('abstract-luxury-gradient-blue-background-smooth-dark-blue-with-black-vignette-studio-banner\ \(1\).jpg');
+  background-size: cover; /* Adjust sizing to cover the entire background */
+  background-repeat: no-repeat; /* Prevent image repetition */
+  background-attachment: fixed; /* Keep the background fixed when scrolling */
 }
 
-.storeH1{
-  color: #66FCF1;
-}
-#welcomeH1{
-  font-size: 100px;
-  color: #66FCF1;
-}
- #customH5{
+#loginButton{
+  /* color: #0059b3; */
   color: #C5C6C7;
+  font-size: larger;
+}
+#logoutButton{
+  font-size: larger;
+  color: #8B0000;
+  border-color: #8B0000;
+  font-family: 'Cormorant Garamond', serif;
+}
+#logoutButton:hover{
+  color: #C5C6C7;
+  background-color: #8B0000;
+}
+#userNameStyle{
+  /* color: #0059b3; */
+  color: #8B0000;
+  
+  font-family: 'Roboto', sans-serif;
+  font-size: 20px;
+  text-decoration: underline;
+}
+#custom-nav-link{
+  color: #C5C6C7;
+  font-size: 25px;
+  font-family: 'Cormorant Garamond', serif;
+  /* text-decoration: underline; */
+}
+#custom-nav-link:hover {
+  color: #4285F4; /* Color when hovered */
+}
+#custom-search-btn{
+  color: #0059b3;
+  border-color: #0059b3;
+  font-family: 'Cormorant Garamond', serif;
+}
+#custom-search-btn:hover{
+  color: #4285F4;
+  background-color: #C5C6C7;
+}
+.storeH1{
+  display: flex;
+  align-items: center;
+
+  color: #003366;
+  font-size: 55px;
+  font-family: 'Cormorant Garamond', serif;
+}
+.storeH1 svg {
+  width: 1em; 
+  height: 1em;
+  margin-right: 0.25em;
+  margin-left: 0.25em;
+  color: #003366;
+}
+#userName{
+  font-size: 125px;
+  color: #003366;
+  font-family: 'Cormorant Garamond', serif;
+}
+ #quoteH2{
+  /* color: #0059b3; */
+  color: #003366;
+  font-family: 'Roboto', sans-serif;
+  font-size: 50px;
  }
+
  .customH2{
   color: #C5C6C7;
+  
  }
  .form-label{
 color: #C5C6C7;
  }
 
  .custom-cart-icon{
-  color: #66FCF1;
+  color: #C5C6C7;
   
   font-size: 25px;
  }
@@ -31,7 +98,9 @@ color: #C5C6C7;
  p {
   color: #66FCF1;
  }
- #test{
-  color: white;
+ 
+ #errorMessage{
+  color: red;
  }
+ 
 
