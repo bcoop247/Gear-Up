@@ -2,21 +2,22 @@ import React, { createContext, useContext, useReducer } from 'react';
 import { useEffect } from 'react';
 
 // CART ACTIONS
-const ADD_TO_CART = 'ADD_TO_CART';
-const REMOVE_FROM_CART = 'REMOVE_FROM_CART';
+const REMOVE_AND_UPDATE_TOTAL = 'REMOVE_AND_UPDATE_TOTAL';
+const ADD_AND_UPDATE_TOTAL = 'ADD_AND_UPDATE_TOTAL';
 
-//CART REDUCER FUNCTION
+//cart reducer function,  frist argument for useReducer()
 function cartReducer(state, action) {
   switch (action.type) {
-    case ADD_TO_CART:
-      return [...state, action.payload];
+  
+    case ADD_AND_UPDATE_TOTAL:
+      const updatedCartOnAdd = [...state.cart, action.payload];
+      const updatedTotalOnAdd = calculateTotal(updatedCartOnAdd);
+      return { cart: updatedCartOnAdd, total: updatedTotalOnAdd };
 
-    case REMOVE_FROM_CART:
-      const indexToRemove = state.findIndex((product) => product.id === action.payload);
-      if(indexToRemove !== -1){
-        return [...state.slice(0, indexToRemove), ...state.slice(indexToRemove + 1)];
-      }
-      return state;
+    case REMOVE_AND_UPDATE_TOTAL:
+      const updatedCartafterRemove = state.cart.filter(product => product.id !== action.payload);
+      const updatedTotal = calculateTotal(updatedCartafterRemove);
+      return { cart: updatedCartafterRemove, total: updatedTotal };
 
     default:
       return state;
@@ -27,23 +28,28 @@ function cartReducer(state, action) {
 const ShoppingCartContext = createContext();
 
 export function ShoppingCartProvider({ children }) {
-  const [cart, dispatch] = useReducer(cartReducer, getCartFromLocaleStorage());
 
-  //USE LOCALE STORAGE TO PERSIST DATA UPON PAGE REFRESH
+  const initialState = {
+    cart: getCartFromLocaleStorage(),
+    total: calculateTotal(getCartFromLocaleStorage())
+  };
+const [state, dispatch] = useReducer(cartReducer, initialState);
+
+// using local storage to persist data upon page refresh
   useEffect(() => {
-    localStorage.setItem('cart', JSON.stringify(cart));
-  }, [cart]);
+    localStorage.setItem('cart', JSON.stringify(state.cart));
+  }, [state.cart]);
 
   const addToCart = (product) => {
-    dispatch({ type: ADD_TO_CART, payload: product });
+    dispatch({ type: ADD_AND_UPDATE_TOTAL, payload: product });
   };
 
   const removeFromCart = (productId) => {
-    dispatch({ type: REMOVE_FROM_CART, payload: productId });
+    dispatch({ type: REMOVE_AND_UPDATE_TOTAL, payload: productId });
   };
 
   return (
-    <ShoppingCartContext.Provider value={{ cart, addToCart, removeFromCart }}>
+    <ShoppingCartContext.Provider value={{ cart: state.cart, total: state.total, addToCart, removeFromCart }}>
       {children}
     </ShoppingCartContext.Provider>
   );
@@ -57,6 +63,10 @@ function getCartFromLocaleStorage() {
 //CUSTOM HOOK TO USE THE SHOPPING CART CONTEXT
 export function useShoppingCart() {
   return useContext(ShoppingCartContext);
+}
+
+function calculateTotal(cart) {
+  return cart.reduce((total, product) => total + Number(product.price), 0);
 }
 
 

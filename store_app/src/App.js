@@ -9,16 +9,15 @@ import Electronics from './Electronics';
 import Jewelry from './Jewelry';
 import SearchPage from './SearchPage';
 import ShoppingCartPage from './ShoppingCartPage';
+import Checkout from './Checkout';
+import PaymentSuccessfulPage from './PaymentSuccessfulPage';
 
 function App() {
+ 
   return (
-    <div className="App">
-      {/* 
-      DYNAMICALLY RENDER THE FRONT END WITH REACT ROUTING
-      USING BROWSEROUTER AND ROUTE COMPONENTS WITHIN ROOT COMPONENT WILL ENABLE CLIENT SIDE ROUTING */}
-      
+//using browser router to dynamiclly display content
+    <div className="App"> 
       <Router>
-      
           <Routes>
           <Route path="/" element={<UserLoginForm />} />
           <Route path="/login" element={<UserLoginForm />} />
@@ -30,16 +29,10 @@ function App() {
           <Route path="/jewelry" element={<Jewelry />} > </Route>
           <Route path="/search" element={<SearchPage />} />
           <Route path="/cart" element = {<ShoppingCartPage />} />
+          <Route path="/checkout" element = {<Checkout />} />
+          <Route path='paymentsuccess' element = {<PaymentSuccessfulPage />} />
           </Routes>
       </Router>
-
-
-
-
-
-      
-
-
 
     </div>
   );

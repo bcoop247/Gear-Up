@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { Link, useNavigate } from 'react-router-dom'; // POPULAR LIBRARY FOR HANDLING ROUTING/NAVIGATION IN REACT
-// import jwt_decode from 'jsonwebtoken';
+import Logo from "./Logo";
 
 const UserLoginForm = () => {
   const [email, setEmail] = useState('');
@@ -24,8 +24,10 @@ const UserLoginForm = () => {
 
     if(response.ok){
       const data = await response.json();
+      // here we are setting the user object within the userContext to the fetched user data;
+      // setUser(data);
       localStorage.setItem('userData', JSON.stringify(data));
-      console.log(data);
+      
       navigate('/homepage');
     } else{
       setErrorMessage('Invalid username or password');
@@ -40,54 +42,59 @@ const UserLoginForm = () => {
   };
 
   return (
-    <div>
+    <div className="container">
       <div className="d-grid justify-content-center align-items-center">
-        <Link to="/homepage"> <button type="button" className="btn"> <h1 className="storeH1">GEARup.com</h1></button></Link>
-      
+        <Logo />
+<br />
+<br />
         <Link to="/homepage">
-          <button type="button"className="btn btn-primary position-absolute top-0 start-0 mt-3 ms-3"> Home </button>
+          <button type="button"className="btn position-absolute top-0 start-0 mt-3 ms-3" id="homeButton"> Home </button>
         </Link>
 
         <Link to="/newuser">
-        <button type="button" className="btn btn-primary position-absolute top-0 end-0 mt-3 me-3"> New Account </button>
+        <button type="button" className="btn position-absolute top-0 end-0 mt-3 me-3" id="homeButton"> New Account </button>
         </Link>
       
       </div>
       
     
     <form onSubmit={ handleSubmit } className="d-flex flex-column align-items-center">
-    <h2 className="customH2">Login</h2>
+    <h2 id="pageHeaders">Login</h2>
 
       <div className="col-sm-6">
-          <label htmlFor="email" className="form-label">E-mail:</label>
+          <label htmlFor="email" className="form-label" ></label>
           <input
             type="email"
             id="email"
             name="email"
             onChange={handleEmailChange}
-            className="form-control"
+            className="form-control box-shadow"
+            placeholder="E-mail"
             required
           />
     </div>
 
       <div className="col-sm-6">
-          <label htmlFor="password" className="form-label">Password:</label>
+          <label htmlFor="password" className="form-label"></label>
           <input
             type="password"
             id="password"
             name="password"
             onChange={handlePasswordChange}
             className="form-control"
+            placeholder="Password"
             required
           />
     </div>
 
-    <br /><br />
+    <br />
+    <div class="checkbox">
+    <label style={{color: 'white'}}><input type="checkbox" /> Remember me</label>
+  </div>
+    <br />
 
-    <div className="mb-3">
-       
-        <button type="submit" className="btn btn-primary">Login</button> 
-      
+    <div className="d-flex justify-content-center mb-3">
+       <button type="submit" className="btn" id="homeButton">Login</button> 
     </div>
     {/* CONDITIONALLY RENDER THE ERROR MESSAGE IF NOT NULL */}
     {errorMessage && <p className="error-message" id="errorMessage"> {errorMessage} </p>}

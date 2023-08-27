@@ -1,4 +1,5 @@
 const express = require('express');
+const session = require('express-session');
 const pgp = require('pg-promise')();
 const cors = require('cors');
 const app = express();
@@ -6,6 +7,12 @@ const bcrypt = require('bcrypt');
 const bodyParser = require('body-parser');
 const port = 3500;
 const db = require('./db');
+
+app.use(session({
+  secret: 'secret',
+  resave: false, 
+  saveUninitialized: true,
+}));
 
 //parses JSON data from incoming HTTP requests and makes it accessible in the req.body object
 app.use(bodyParser.json()); 
@@ -21,7 +28,9 @@ const womensProductsRoute = require('./routes/womensProducts')
 const electronicsProductsRoute = require('./routes/electronicProducts');
 const jewelryProductsRoute = require('./routes/jewelryProducts');
 const searchRoute = require('./routes/search');
-const quotesRoute = require('./routes/quotes')
+const homePageRoute = require('./routes/homePage');
+const userProfileRoute = require('./routes/userProfile');
+const paymentDetailsRoute = require('./routes/paymentDetails');
 
 //SETUP ROUTE MIDDLEWARE
 app.use('/mensproducts', mensProductsRoute);
@@ -29,7 +38,9 @@ app.use('/womensproducts', womensProductsRoute);
 app.use('/electronicproducts', electronicsProductsRoute);
 app.use('/jewelryproducts', jewelryProductsRoute);
 app.use('/search', searchRoute);
-app.use('/quotes', quotesRoute);
+app.use('/homepage', homePageRoute);
+app.use('/userProfile', userProfileRoute);
+app.use('/paymentdetails', paymentDetailsRoute);
 
 app.get('/', (req, res) => {
   res.send('Hello, expressss!');
@@ -40,7 +51,7 @@ app.post('/login', async (req, res,) => {
   const { email, password } = req.body;
   
   const user = await db.oneOrNone(
-    `SELECT email, first_name, last_name, username, password 
+    `SELECT id, email, first_name, last_name, username, password 
      FROM users 
      WHERE email = $1 `, 
     [email]);
@@ -54,18 +65,26 @@ app.post('/login', async (req, res,) => {
       return res.status(401).json({ erro: 'Invalid Credentials'});
     }
     else if(user && passwordMatch){
+    
       return res.json(user);
     }
 
   });
 
 
+  app.get('/retail_store/new_user', (req, res) => {
+    res.json('This is the new user endpoint');
+  });
+
+
 app.post('/retail_store/new_user', async (req, res) => {
-  const {firstName, lastName, username, email, password } = req.body;
+  const {first_name, last_name, username, email, password } = req.body;
   const saltRounds  = 10; // NUMBER OF ITERATIONS TO HASH PASSWORD
   
   bcrypt.hash(password, saltRounds, async (error, hashedPassword) => { 
-  await db.query(`INSERT INTO users (first_name, last_name, username, email, password) VALUES ($1, $2, $3, $4, $5)`, [firstName, lastName, username, email, hashedPassword])
+  await db.query(
+    `INSERT INTO users (first_name, last_name, username, email, password)
+    VALUES ($1, $2, $3, $4, $5)`, [first_name, last_name, username, email, hashedPassword])
 
   .then(() => {
     console.log("User successfully inserted.");

@@ -4,6 +4,7 @@ import { useState, useEffect } from "react";
 import './App.css';
 import CartIcon from "./CartIcon";
 import { useShoppingCart } from "./ShoppingCartContext";
+import Navbar from "./Navbar";
 
 const WomensPage = () => {
   const [womensProducts, setWomensProducts] = useState([]);
@@ -32,32 +33,31 @@ const WomensPage = () => {
       <div className='container justify-content-center'>
       <Header onSearch={handleSearch}/>
 
+      <Navbar />
+
 <div className="container d-flex justify-content-center">
-  <h2 className="customH2">Womens Apparel</h2>
+  <h2 id="pageHeaders">Womens Apparel</h2>
 </div>
+<br /> <br />
 
 <Link to="/cart"> <CartIcon /> </Link>
 
-
-
 <ul>
         {womensProducts.map((product) => (
-          <li key={product.id}>
-            <img src={product.image} alt={product.product_name} className="rounded float-start customImage" />
-            <p>{product.product_name}</p>
-            <p>Category: {product.category}</p>
+          <li key={product.id} className="list-group-item d-flex align-items-center">
+          <img src={product.image} alt={product.product_name} className="img-fluid rounded float-start customImage" />
+          <div className="ms-3">
+            <p>Gear: {product.product_name}</p>
+            <p>Detail: {product.description}</p>
+            <p>Rating: {product.rating} / 5</p>
             <p>Price: {product.price}</p>
-            <button className="btn btn-primary" onClick={() => handleAddtoCart(product)}>Add to Cart</button>
-            <br />
-            <br />
-            <br />
-            <br />
-          </li>
+            <button className="btn" id="addToCartButton" onClick={() => handleAddtoCart(product)}>Add to Cart</button>
+            <br /> <br /> <br />
+            
+          </div>
+        </li>
         ))}
       </ul>
-
-
-    
 
    </div>
   )

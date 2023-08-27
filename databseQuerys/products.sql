@@ -37,3 +37,24 @@ VALUES
 (20,'DANVOUY Womens T Shirt Casual Cotton Short',12.99,'95%Cotton,5%Spandex, Features: Casual, Short Sleeve, Letter Print,V-Neck,Fashion Tees, The fabric is soft and has some stretch., Occasion: Casual/Office/Beach/School/Home/Street. Season: Spring,Summer,Autumn,Winter.','women''s clothing','https://fakestoreapi.com/img/61pHAEJ4NML._AC_UX679_.jpg',3.6,145);
 
 SELECT * FROM products WHERE category = 'men''s clothing';
+
+INSERT INTO products (sku, product_name, price, description, rating, stock_quantity)
+VALUES 
+    (21, 'Blue Classic T-Shirt', 19.99, 'A comfortable and versatile blue t-shirt for everyday wear.', 4.5, 50),
+    (22, 'Slim Fit Black Jeans', 59.99, 'Modern slim fit black jeans that complement any look.', 4.2, 30),
+    (23, 'White Polo Shirt', 29.99, 'Elegant white polo shirt suitable for both casual and semi-formal occasions.', 4.7, 40),
+    (24, 'Striped Button-Up Shirt', 39.99, 'A stylish striped button-up shirt with a modern twist.', 4.4, 25),
+    (25, 'Casual Khaki Shorts', 24.99, 'Comfortable and versatile khaki shorts for relaxed summer outings.', 4.0, 60),
+    (26, 'Classic Navy Blazer', 89.99, 'A timeless navy blazer that adds sophistication to any ensemble.', 4.8, 15),
+    (27, 'Denim Jacket', 69.99, 'Stylish denim jacket with a rugged look, perfect for layering.', 4.3, 20),
+    (28, 'Cotton V-Neck Sweater', 49.99, 'Soft and warm cotton v-neck sweater for chilly days.', 4.6, 35),
+    (29, 'Plaid Flannel Shirt', 34.99, 'Cozy plaid flannel shirt for a rustic and casual look.', 4.1, 28),
+    (30, 'Cargo Pants', 44.99, 'Functional cargo pants with plenty of pockets for utility.', 4.0, 50);
+
+INSERT INTO products (sku, category, product_name, price, description, rating, stock_quantity)
+VALUES
+  (31, 'electronics', 'Xbox Wireless Controller', 59.99, 'Xbox One Wireless Controller', 4.5, 100),
+  (32, 'electronics', 'Ps4 Controller', 59.99, 'Playstation 4 Controller', 4.2, 75),
+  (33, 'electronics', 'Ps4', 299.99, 'Playstation 4 Gaming Console', 4.7, 120),
+  (34, 'electronics', 'Rocket League', 19.99, 'Rocket League for Xbox, playstation, or PC', 4.0, 50),
+  (35, 'electronics', 'Elite PC', 2999.99, 'Top of the line gaming PC', 4.8, 90);

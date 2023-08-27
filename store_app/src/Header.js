@@ -1,19 +1,18 @@
 import { Link, useNavigate } from "react-router-dom";
 import { useState, useEffect } from "react";
-// import logo from './logo.png';
+import CartIcon from './CartIcon';
 import './App.css';
 
 // onSearch 
 const Header = ({onSearch}) => {
-  
   const [searchValue, setSearchValue] = useState("");
+  const [userData, setUserData] = useState({});
   const navigate = useNavigate();
   
   const handleInputChange = (event) => {
    const inputValue = event.target.value;
    setSearchValue(inputValue);
-   onSearch(inputValue); // CALL THE CALLBACK FUNCTION WITH THE USERS INPUT
-  
+   onSearch(inputValue); 
   };
 
   const handleSubmit = (event) => {
@@ -26,10 +25,26 @@ const Header = ({onSearch}) => {
     
   }, []);
 
+  useEffect(() => {
+    const storedUserInfo = JSON.parse(localStorage.getItem('userData'));
+    const newUserData = JSON.parse(localStorage.getItem('newUserData'));
+    
+    if(storedUserInfo){
+      setUserData(storedUserInfo);
+    }
+    else if (newUserData){
+      setUserData(newUserData);
+    }else{
+      setUserData(null);
+    }
+  }, []);
+
   return (
+    
  
     <div>
-      <div className="d-grid justify-content-center align-items-center">
+      <div className="d-flex justify-content-center align-items-center">
+      <div className="d-flex align-items-center me-4">
         <Link to="/homepage">
           <button type="button" className="btn">
             <h1 className="storeH1"> G E A R u p   
@@ -39,21 +54,28 @@ const Header = ({onSearch}) => {
             </h1>
           </button>
         </Link>
+        </div>
+        
+
+        <div className="ms-6">
+          <form role="search" onSubmit={handleSubmit}>
+            <input className="form-control" id="searchBar" type="search" aria-label="Search" placeholder="Search" style={{width: '300px'}} onChange={handleInputChange} />
+          </form>
+        </div>
+
+        
+        <Link to="/cart"> 
+          <CartIcon userData={userData} /> 
+        </Link>
       </div>
 
       
-<nav className="nav nav-pills nav-fill">
+{/* <nav className="nav nav-pills nav-fill">
   <Link to="/menspage"  className="nav-link" id="custom-nav-link"  aria-current="page">Mens</Link>
   <Link to="/womenspage" className="nav-link" id="custom-nav-link">Womens</Link>
   <Link to="/electronics" className="nav-link" id="custom-nav-link">Electronics</Link>
   <Link to="/jewelry" className="nav-link" id="custom-nav-link" >Jewelry</Link>
-    <form className="d-flex" role="search">
-      <input className="form-control me-2" type="search" placeholder="Search" aria-label="Search" onChange={handleInputChange} 
-      />
-        <button className="btn " id="custom-search-btn" type="submit" onClick={handleSubmit}>Search
-        </button>
-    </form>
-</nav>
+</nav> */}
 
 <br></br>
 <br></br>

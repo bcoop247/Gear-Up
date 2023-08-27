@@ -3,23 +3,28 @@
 @import url('https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Cedarville+Cursive&family=Cormorant+Garamond:wght@600&family=Dancing+Script:wght@700&family=Roboto:ital,wght@1,700&display=swap');
 /* Bootstrap Icons */
 @import "~bootstrap/dist/css/bootstrap.css";
-
+/* *{
+  background-color: white;
+} */
 body {
-  background-image: url('abstract-luxury-gradient-blue-background-smooth-dark-blue-with-black-vignette-studio-banner\ \(1\).jpg');
-  background-size: cover; /* Adjust sizing to cover the entire background */
-  background-repeat: no-repeat; /* Prevent image repetition */
-  background-attachment: fixed; /* Keep the background fixed when scrolling */
+  background-image: url('blackBckrnd.jpg');
+  background-size: cover; 
+  background-repeat: no-repeat; 
+  background-attachment: fixed; 
 }
 
 #loginButton{
-  /* color: #0059b3; */
   color: #C5C6C7;
   font-size: larger;
+}
+#loginButton:hover{
+  color: #32de84;
 }
 #logoutButton{
   font-size: larger;
   color: #8B0000;
   border-color: #8B0000;
+  border-width: 5px;
   font-family: 'Cormorant Garamond', serif;
 }
 #logoutButton:hover{
@@ -27,80 +32,149 @@ body {
   background-color: #8B0000;
 }
 #userNameStyle{
-  /* color: #0059b3; */
   color: #8B0000;
-  
+  color: #32de84;
   font-family: 'Roboto', sans-serif;
   font-size: 20px;
   text-decoration: underline;
 }
 #custom-nav-link{
   color: #C5C6C7;
-  font-size: 25px;
+  font-size: 20px;
+  border-width: 5px;
   font-family: 'Cormorant Garamond', serif;
   /* text-decoration: underline; */
 }
 #custom-nav-link:hover {
-  color: #4285F4; /* Color when hovered */
-}
-#custom-search-btn{
-  color: #0059b3;
-  border-color: #0059b3;
-  font-family: 'Cormorant Garamond', serif;
-}
-#custom-search-btn:hover{
-  color: #4285F4;
   background-color: #C5C6C7;
+  color:#003366;
+}
+#searchBar{
+  border-radius: 8px;
+  height: 40px;
+  margin-top: 8px;
+  border-color: #003366;
+}
+
+#homeButton{
+  /* border-color: #003366; */
+  color: #C5C6C7;
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 20px;
+  border-width: 5px;
+  border-color: white;
+}
+#homeButton:hover{
+  background-color: #C5C6C7;
+  color:#003366;
+}
+#checkout-btn{
+  color: #C5C6C7;
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 20px;
+  border-width: 5px;
+  justify-content: center;
+}
+#addToCartButton{
+  border-color: #003366;
+  color: #C5C6C7;
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 20px;
+  border-width: 5px;
+}
+#addToCartButton:hover{
+  background-color: #C5C6C7;
+  color:#003366;
+}
+#removeFromCartButton{
+  border-color: #8B0000;
+  color: #8B0000;
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 20px;
+  border-width: 5px;
+}
+#removeFromCartButton:hover{
+  background-color: #C5C6C7;
+  color: #8B0000;
+}
+#pageHeaders{
+  color: white;
+  font-family: 'Cormorant Garamond', serif;
+  font-weight: bold;
+  font-size: 50px;
 }
 .storeH1{
   display: flex;
   align-items: center;
-
-  color: #003366;
+  color: #068775;
   font-size: 55px;
   font-family: 'Cormorant Garamond', serif;
+  font-weight: bold;
 }
 .storeH1 svg {
   width: 1em; 
   height: 1em;
   margin-right: 0.25em;
   margin-left: 0.25em;
-  color: #003366;
+  color: #068775;
 }
-#userName{
-  font-size: 125px;
-  color: #003366;
-  font-family: 'Cormorant Garamond', serif;
+#welcomeTitle{
+  font-size: 150px;
+  color: #003366; 
+  color: #C5C6C7;
+  
+  /* font-family: 'Cormorant Garamond', serif;  */
+}
+#welcomeTitle span {
+  transition: transform 0.5s ease; 
+}
+#welcomeTitle span:hover {
+  color: #C5C6C7;
+  /* transform: scale(1.1); Scale the letter on hover */
 }
  #quoteH2{
   /* color: #0059b3; */
-  color: #003366;
+  color: #c5c5c5;
+  /* color: #068775; */
   font-family: 'Roboto', sans-serif;
   font-size: 50px;
  }
-
- .customH2{
-  color: #C5C6C7;
-  
+ #successMessage{
+  font-family: 'Cormorant Garamond', serif;
+  color: white;
  }
- .form-label{
-color: #C5C6C7;
+
+ .form-control{
+  font-family: 'Cormorant Garamond', serif;
+  color: #8B0000;
+  width: 200px;
  }
 
  .custom-cart-icon{
   color: #C5C6C7;
-  
-  font-size: 25px;
+  font-size: 30px;
+ }
+ .custom-cart-icon:hover{
+  color:#068775;
+ }
+ #cardExpirationSelection{
+  font-family: 'Cormorant Garamond', serif;
  }
  .customImage{
   width: 120px;
  }
  p {
-  color: #66FCF1;
+  color: #C5C6C7;
+  font-family: 'Roboto', sans-serif;
  }
  
  #errorMessage{
-  color: red;
+  color: #8B0000;
+  text-align: center;
  }
+ #visaLogo{
+  width: 25px;
+ }
+
  
 
