@@ -91,7 +91,7 @@ useEffect(() => {
         <div class="panel-heading" style={{color: 'white', textAlign: 'center'}}>JEWELERY</div>
         <Link to="/jewelry">
           <div class="panel-body"><img src={jeweleryImage} class="img-responsive" style={{width:'100%', height:'350px', borderRadius: '15px', overflow: 'hidden'}} alt="jewelery" /></div>
-        </Link>
+        </Link>0l
       </div>
     </div>
   </div>
