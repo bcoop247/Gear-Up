@@ -1,0 +1,6 @@
+{
+  "homepage": "http://bcoop247.github.io/gear-up",
+  "devDependencies": {
+    "gh-pages": "^6.0.0"
+  }
+}
