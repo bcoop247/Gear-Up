@@ -1,0 +1,19 @@
+{
+  "files": {
+    "main.css": "/gear-up/static/css/main.dcf2ae2f.css",
+    "main.js": "/gear-up/static/js/main.322a33ec.js",
+    "static/media/blackBckrnd.jpg": "/gear-up/static/media/blackBckrnd.4038b485924838294f09.jpg",
+    "static/media/womensImage.png": "/gear-up/static/media/womensImage.4c0c3613269179f3423f.png",
+    "static/media/jeweleryImage.jpg": "/gear-up/static/media/jeweleryImage.dc065899105fae0286be.jpg",
+    "static/media/electronics.jpg": "/gear-up/static/media/electronics.1725c5e4c1746a1b9b63.jpg",
+    "static/media/mensImage.jpg": "/gear-up/static/media/mensImage.0a9af5847c1eb3ca8157.jpg",
+    "static/media/visaMastercard.png": "/gear-up/static/media/visaMastercard.883049cd0866367de871.png",
+    "index.html": "/gear-up/index.html",
+    "main.dcf2ae2f.css.map": "/gear-up/static/css/main.dcf2ae2f.css.map",
+    "main.322a33ec.js.map": "/gear-up/static/js/main.322a33ec.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.dcf2ae2f.css",
+    "static/js/main.322a33ec.js"
+  ]
+}
