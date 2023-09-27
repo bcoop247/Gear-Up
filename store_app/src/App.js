@@ -4,7 +4,7 @@ import NewUserForm from './NewUserForm.js';
 import HomePage from './HomePage';
 import MensPage from './MensPage';
 import WomensPage from './WomensPage';
-import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
+import { HashRouter as Router, Routes, Route } from 'react-router-dom';
 import Electronics from './Electronics';
 import Jewelry from './Jewelry';
 import SearchPage from './SearchPage';
