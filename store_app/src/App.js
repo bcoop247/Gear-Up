@@ -19,6 +19,7 @@ function App() {
     <div className="App"> 
       <Router basename='/gear-up'>
           <Routes>
+          <Route index element={<HomePage />} />
           <Route path="/" element={<UserLoginForm />} />
           <Route path="/login" element={<UserLoginForm />} />
           <Route path="/newuser" element={<NewUserForm />} ></Route>
